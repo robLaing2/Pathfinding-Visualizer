@@ -94,27 +94,4 @@ function addUnvisitedNeighbours(grid, node, workingSet) {
     var node = grid[row][col + 2];
     if (!node.isVisitedMaze && !workingSet.includes(node)) workingSet.push(node);
   }
-
-  // for (let i = 0; i < workingSet.length; i++) {
-  //   if (workingSet[i].isVisitedMaze) {
-  //     workingSet.splice(i,1)
-  //   }
-  // }
-
-  //return workingSet;
-
-  //workingSet.filter(cell => !cell.isVisitedMaze);
 }
-
-
-function makeAllNodesWalls(grid) {
-  var nodes = [];
-  for (var row of grid) {
-    for (var node of row) {
-      node.isWall = true;
-      //nodes.push(node);
-    }
-  }
-  //return nodes;
-}
-

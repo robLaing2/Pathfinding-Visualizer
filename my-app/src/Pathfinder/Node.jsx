@@ -13,6 +13,8 @@ export default class Node extends Component {
         onMouseEnter,
         onMouseUp,
         row,
+        distance,
+        f,
         isVisitedMaze,
       } = this.props;
       const extraClassName = isFinish
