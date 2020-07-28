@@ -8,12 +8,12 @@ import {aStar} from '../algorithms/aStar.js';
 import {primsAlgorithm} from '../algorithms/mazeCreation.js';
 
 const START_NODE_ROW = 10;
-const START_NODE_COL = 2;
+const START_NODE_COL = 5;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 38;
 
-const NO_ROWS = 19;
-const NO_COLS = 49;
+const NO_ROWS = 16;
+const NO_COLS = 40;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -68,7 +68,6 @@ export default class PathfindingVisualizer extends Component {
             this.setState({grid: newGrid});
         }
       }
-
   }
 
   animateMaze(mazeLayout) {
@@ -127,16 +126,31 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-        <button onClick={() => this.visualizeDijkstra()}>
-          Visualize Dijkstras Algorithm
-        </button>
-        <button onClick={() => this.visualizeAStar()}>
-          Visualize A Star
-        </button>
-        <button onClick={() => this.visualiseMazeCreation()}>
-          Create maze
-        </button>
-        <div className="grid">
+        <div class="selectionGrid">
+          <div class="selectionNum">
+            1.
+          </div>
+          <div class="selectionBtn">
+            <button class="algorithmBtn" onClick={() => this.visualiseMazeCreation()}>
+              Create maze
+            </button>
+          </div>
+          <div class="selectionNum">
+            2.
+          </div>
+          <div class="selectionBtn">
+            <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
+              Solve with Dijkstras
+            </button>
+            <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
+              Solve with A Star
+            </button>
+          </div>
+          
+        
+        </div>
+        
+        <div class="grid">
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx}>

@@ -1,5 +1,52 @@
 .grid{
     margin: auto;
-    margin-top: 20px;
-    border: black 2px;
+    margin-top:20px;
+}
+
+.selectionGrid {
+    width: 80%;
+    margin-bottom: 10px;
+    height:150px;
+    text-align:center;
+    margin: 0 auto;
+}
+
+.selectionNum {
+    width: 100px;
+    font-size: 50px;
+    display: inline-block;
+    color:#ffffff
+}
+
+.selectionBtn {
+    display: inline-block;
+    
+    
+    
+}
+
+.algorithmBtn {
+    width:120px;
+    height:60px;
+    background-color:#000000;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Courier New';
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.algorithmBtn:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
+.algorithmBtn {
+    
 }
