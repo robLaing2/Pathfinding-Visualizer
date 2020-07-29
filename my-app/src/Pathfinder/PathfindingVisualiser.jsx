@@ -149,11 +149,11 @@ export default class PathfindingVisualizer extends Component {
           
         
         </div>
-        
+        <div class="container">
         <div class="grid">
           {grid.map((row, rowIdx) => {
             return (
-              <div key={rowIdx}>
+              <div key={rowIdx} class="gridRow">
                 {row.map((node, nodeIdx) => {
                   const {row, col, isFinish, isStart, distance, isWall, isVisitedMaze} = node;
                   return (
@@ -177,6 +177,7 @@ export default class PathfindingVisualizer extends Component {
               </div>
             );
           })}
+        </div>
         </div>
       </>
     );

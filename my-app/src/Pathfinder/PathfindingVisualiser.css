@@ -1,12 +1,11 @@
 .grid{
     margin: auto;
-    margin-top:20px;
 }
 
 .selectionGrid {
     width: 80%;
     margin-bottom: 10px;
-    height:150px;
+    height:100px;
     text-align:center;
     margin: 0 auto;
 }
@@ -21,8 +20,16 @@
 .selectionBtn {
     display: inline-block;
     
-    
-    
+
+}
+
+.container {
+    border:3px solid #fcfbfe;
+    display: inline-block;
+}
+
+.gridRow {
+    height:2vw;
 }
 
 .algorithmBtn {
