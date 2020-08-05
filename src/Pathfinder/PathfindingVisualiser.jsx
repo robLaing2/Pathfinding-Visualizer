@@ -126,29 +126,7 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-        <div class="selectionGrid">
-          <div class="selectionNum">
-            1.
-          </div>
-          <div class="selectionBtn">
-            <button class="algorithmBtn" onClick={() => this.visualiseMazeCreation()}>
-              Create maze
-            </button>
-          </div>
-          <div class="selectionNum">
-            2.
-          </div>
-          <div class="selectionBtn">
-            <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
-              Solve with Dijkstras
-            </button>
-            <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
-              Solve with A Star
-            </button>
-          </div>
-          
         
-        </div>
         <div class="container">
         <div class="grid">
           {grid.map((row, rowIdx) => {
@@ -178,6 +156,25 @@ export default class PathfindingVisualizer extends Component {
             );
           })}
         </div>
+        </div>
+        <div class="selectionGrid">
+          <div class="sel">
+            <button class="algorithmBtn" onClick={() => this.visualiseMazeCreation()}>
+              Create maze
+            </button>
+          </div>
+
+          
+          <div class="sel">
+          <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
+            Solve with Dijkstras
+          </button>
+          </div>
+          <div class="sel">
+            <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
+              Solve with A Star
+            </button>
+          </div>
         </div>
       </>
     );
