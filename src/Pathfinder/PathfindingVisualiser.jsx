@@ -100,14 +100,26 @@ export default class PathfindingVisualizer extends Component {
 
     this.makeAllNodesWall()
 
+    var gridO = this.state.grid;
+
     for (let i = 0; i < mazeLayout.length; i++) {
 
         setTimeout(() => {
             const {row, col} = mazeLayout[i];
-            const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-            this.setState({grid: newGrid});
-          }, 50 * i);
+            gridO = getNewGridWithWallToggled(gridO, row, col);
+
+            if (row==START_NODE_ROW && col==START_NODE_COL ||
+              (row==FINISH_NODE_ROW && col==FINISH_NODE_COL)) {
+            }
+            else {
+              document.getElementById(`node-${row}-${col}`).className = 'node';
+            }
+
+
+            
+          }, 20 * i);
     }
+    this.setState({grid: gridO});
   }
 
   animateShortestPath(nodesInShortestPathOrder) {
