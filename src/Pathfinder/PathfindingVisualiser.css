@@ -3,10 +3,11 @@
 }
 
 .selectionGrid {
-    width: 80%;
+    width: 100%;
     text-align:center;
     margin: 0 auto;
-    height:200px;
+    display: inline-block;
+    margin-top: 50px;
 }
 
 .v1 {
@@ -22,7 +23,14 @@
 
 .sel {
     display: inline-block;
-    height: 120px;
+
+}
+
+.selright {
+    display:inline-block;
+    margin-left:50px;
+    border-left:3px solid #fcfbfe;;
+    padding-left: 30px;
 }
 
 
@@ -38,14 +46,17 @@
 
 .algorithmBtn {
     width:120px;
-    height:120px;
-    background-color:#000000;
-    border:1px solid #FFFFFF;
-    font-family:'Courier New';
-    font-weight:300;
+    height:80px;
+    text-align: center;
+    margin: auto;
     color:#FFFFFF;
-    text-align:center;
-    transition: all 0.2s;
+    background-color:#000000;
+    border:1px solid #fcfbfe;
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 20px;
+
+
 }
 
 

@@ -158,21 +158,17 @@ export default class PathfindingVisualizer extends Component {
         </div>
         </div>
         <div class="selectionGrid">
-          <div class="sel">
+          <div class="sel"> 
             <button class="algorithmBtn" onClick={() => this.visualiseMazeCreation()}>
-              Create maze
+              Create <br></br>maze
             </button>
           </div>
-
-          
-          <div class="sel">
-          <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
-            Solve with Dijkstras
-          </button>
-          </div>
-          <div class="sel">
+          <div class="selright">
+            <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
+              Solve with Dijkstras
+            </button>
             <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
-              Solve with A Star
+              Solve with <br></br>A Star
             </button>
           </div>
         </div>
