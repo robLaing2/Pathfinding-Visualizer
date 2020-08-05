@@ -7,13 +7,13 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstras.js'
 import {aStar} from '../algorithms/aStar.js';
 import {primsAlgorithm} from '../algorithms/mazeCreation.js';
 
-const START_NODE_ROW = 10;
-const START_NODE_COL = 5;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 38;
+const START_NODE_ROW = 8;
+const START_NODE_COL = 4;
+const FINISH_NODE_ROW = 8;
+const FINISH_NODE_COL = 40;
 
-const NO_ROWS = 16;
-const NO_COLS = 40;
+const NO_ROWS = 17;
+const NO_COLS = 43;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -62,13 +62,39 @@ export default class PathfindingVisualizer extends Component {
 
   makeAllNodesWall() {
 
+    var gridO = this.state.grid;
+
     for (let row = 0; row < NO_ROWS; row++) {
         for (let col = 0; col < NO_COLS; col++) {
-            const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-            this.setState({grid: newGrid});
+            gridO = getNewGridWithWallToggled(gridO, row, col);
+            
         }
-      }
+    }
+    this.setState({grid: gridO});
   }
+
+  resetGrid() {
+    var gridO = this.state.grid;
+
+    for (let row = 0; row < NO_ROWS; row++) {
+        for (let col = 0; col < NO_COLS; col++) {
+            gridO = getNewGridReset(gridO, row, col);
+
+            if (row==START_NODE_ROW && col==START_NODE_COL) {
+              document.getElementById(`node-${row}-${col}`).className = 'node node-start';
+            }
+            else if (row==FINISH_NODE_ROW && col==FINISH_NODE_COL){
+              document.getElementById(`node-${row}-${col}`).className = 'node node-finish';
+            }
+            else {
+              document.getElementById(`node-${row}-${col}`).className = 'node';
+            }
+        }
+    }
+    this.setState({grid: gridO});
+    
+  }
+
 
   animateMaze(mazeLayout) {
 
@@ -93,6 +119,8 @@ export default class PathfindingVisualizer extends Component {
       }, 50 * i);
     }
   }
+
+
 
   visualizeDijkstra() {
     const {grid} = this.state;
@@ -120,6 +148,8 @@ export default class PathfindingVisualizer extends Component {
 
     this.animateMaze(mazeLayout);
   }
+
+
 
   render() {
     const {grid, mouseIsPressed} = this.state;
@@ -170,6 +200,9 @@ export default class PathfindingVisualizer extends Component {
             <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
               Solve with <br></br>A Star
             </button>
+            <button class="algorithmBtn" onClick={() => this.resetGrid()}>
+              Reset
+            </button>
           </div>
         </div>
       </>
@@ -207,6 +240,24 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   const newNode = {
     ...node,
     isWall: !node.isWall,
+  };
+  newGrid[row][col] = newNode;
+  return newGrid;
+};
+
+const getNewGridReset = (grid, row, col) => {
+  const newGrid = grid.slice();
+  const node = newGrid[row][col];
+  const newNode = {
+    ...node,
+    isStart: row === START_NODE_ROW && col === START_NODE_COL,
+    isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
+    distance: Infinity,
+    f: Infinity,
+    isVisited: false,
+    isWall: false,
+    previousNode: null,
+    isVisitedMaze:false,
   };
   newGrid[row][col] = newNode;
   return newGrid;
