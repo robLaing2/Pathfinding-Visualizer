@@ -16,6 +16,7 @@ export default class Node extends Component {
         distance,
         f,
         isVisitedMaze,
+        neighbourNum,
       } = this.props;
       const extraClassName = isFinish
         ? 'node-finish'

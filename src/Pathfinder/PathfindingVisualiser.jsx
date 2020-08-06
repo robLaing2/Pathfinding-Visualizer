@@ -15,6 +15,8 @@ const FINISH_NODE_COL = 40;
 const NO_ROWS = 17;
 const NO_COLS = 43;
 
+
+
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -56,6 +58,7 @@ export default class PathfindingVisualizer extends Component {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
+          document.getElementById(`visitCounter`).innerHTML = i;
       }, 10 * i);
     }
   }
@@ -92,6 +95,9 @@ export default class PathfindingVisualizer extends Component {
         }
     }
     this.setState({grid: gridO});
+
+    document.getElementById(`visitCounter`).innerHTML = 0;
+    document.getElementById(`distanceFound`).innerHTML = 0;
     
   }
 
@@ -128,6 +134,7 @@ export default class PathfindingVisualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
+        document.getElementById(`distanceFound`).innerHTML = i;
       }, 50 * i);
     }
   }
@@ -175,7 +182,7 @@ export default class PathfindingVisualizer extends Component {
             return (
               <div key={rowIdx} class="gridRow">
                 {row.map((node, nodeIdx) => {
-                  const {row, col, isFinish, isStart, distance, isWall, isVisitedMaze} = node;
+                  const {row, col, isFinish, isStart, distance, isWall, isVisitedMaze, neighbourNum} = node;
                   return (
                     <Node
                       key={nodeIdx}
@@ -185,6 +192,7 @@ export default class PathfindingVisualizer extends Component {
                       distance = {distance}
                       isWall={isWall}
                       isVisitedMaze={isVisitedMaze}
+                      neighbourNum={neighbourNum}
                       mouseIsPressed={mouseIsPressed}
                       onMouseDown={(row, col) => this.handleMouseDown(row, col)}
                       onMouseEnter={(row, col) =>
@@ -215,7 +223,14 @@ export default class PathfindingVisualizer extends Component {
             <button class="algorithmBtn" onClick={() => this.resetGrid()}>
               Reset
             </button>
+            
           </div>
+          <p class="visitCounter" id="visitCounter">
+              0
+          </p>
+          <p class="visitCounter" id="distanceFound">
+              0
+          </p>
         </div>
       </>
     );
@@ -244,6 +259,7 @@ const createNode = (col, row) => {
     isWall: false,
     previousNode: null,
     isVisitedMaze:false,
+    neighbourNum:0,
   };
 };
 const getNewGridWithWallToggled = (grid, row, col) => {
@@ -269,7 +285,8 @@ const getNewGridReset = (grid, row, col) => {
     isVisited: false,
     isWall: false,
     previousNode: null,
-    isVisitedMaze:false,
+    isVisitedMaze: false,
+    neighbourNum: 0,
   };
   newGrid[row][col] = newNode;
   return newGrid;

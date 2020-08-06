@@ -59,6 +59,17 @@
 
 }
 
+.visitCounter {
+    text-align: center;
+    margin: auto;
+    color:#FFFFFF;
+    background-color:#000000;
+    border:1px solid #fcfbfe;
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 20px;
+}
+
 
 .algorithmBtn:hover{
     color:#000000;

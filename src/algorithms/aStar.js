@@ -10,6 +10,8 @@ export function aStar(grid, startNode, endNode) {
   startNode.distance = 0;
   startNode.f = startNode.distance + startNode.h;
 
+  var visitCount = 3;
+
 
   while(!!openSet.length){
 
@@ -27,6 +29,9 @@ export function aStar(grid, startNode, endNode) {
 
     var neighbours = getNeighbours(currentNode, grid);
 
+
+    
+
     for (let i = 0; i < neighbours.length; i++) {
       var neighbour = neighbours[i];
       var potentialGScore = currentNode.distance + 1;
@@ -39,6 +44,8 @@ export function aStar(grid, startNode, endNode) {
         neighbour.f = neighbour.h + neighbour.distance;
 
         if (!openSet.includes(neighbour)) {
+          neighbour.neighbourNum = visitCount;
+          visitCount = visitCount + 1;
           openSet.push(neighbour);
         }
       }
@@ -68,5 +75,19 @@ function getNeighbours(node, grid) {
 }
 
 function sortNodesByFScore(unvisitedNodes) {
-  unvisitedNodes.sort((nodeA, nodeB) => nodeA.f - nodeB.f);
+
+  console.log("before");
+  console.log(unvisitedNodes);
+
+  //unvisitedNodes.sort((nodeA, nodeB) => nodeA.f - nodeB.f);
+
+  unvisitedNodes.sort(
+    function(nodeA, nodeB) {          
+       if (nodeA.f === nodeB.f) {
+          return nodeB.neighborNum - nodeA.neighborNum;
+       }
+       return nodeA.f - nodeB.f;
+    });
+
+  console.log(unvisitedNodes);
 }
