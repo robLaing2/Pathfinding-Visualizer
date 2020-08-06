@@ -59,6 +59,43 @@
 
 }
 
+.algorithmDiv {
+    position: relative;
+    display: inline-block;
+
+
+}
+
+.algorithmText {
+    visibility: hidden;
+    width:450px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    
+    padding: 10px;
+    border:1px solid #fcfbfe;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre;
+
+
+    position: absolute;
+    z-index: 1;
+    bottom: 5%;
+    left: 105%;
+}
+
+.algoText {
+
+}
+
+.algorithmDiv:hover .algorithmText {
+    visibility: visible;
+}
+
+
+
 .visitCounter {
     text-align: center;
     margin: auto;

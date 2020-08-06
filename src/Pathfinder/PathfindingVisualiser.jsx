@@ -217,9 +217,40 @@ export default class PathfindingVisualizer extends Component {
             <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
               Solve with Dijkstras
             </button>
-            <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
-              Solve with <br></br>A Star
-            </button>
+
+            <div class="algorithmText">
+
+            </div>
+            
+            <div class="algorithmDiv">
+              <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
+                Solve with <br></br>A Star
+              </button>
+              <div class="algorithmText">
+              while the open_list is not empty <br></br>
+              m = open_list the node node_current with the lowest f <br></br>
+              if m == end <br></br>
+              &emsp;    return<br></br>
+              &emsp;   remove m from open_listadd m to closed_lits<br></br>
+              &emsp;   for each n in child(m)<br></br>
+              &emsp; &emsp;     if n in closed_list<br></br>
+              &emsp; &emsp; &emsp;       continue<br></br>
+              &emsp; &emsp;     cost = g(m) + distance(m, n)<br></br>
+              &emsp; &emsp;     if n in open_list and cost less than g(n)<br></br>
+              &emsp; &emsp; &emsp;       remove n from open_list as new path is better<br></br>
+              &emsp; &emsp;     if n in closed_list and cost less than g(n)<br></br>
+              &emsp; &emsp;       remove n from closed_list<br></br>
+              &emsp; &emsp;     if n not in open_list and n not in closed_list<br></br>
+              &emsp; &emsp; &emsp;       add n to open_list<br></br>
+              &emsp; &emsp; &emsp;       g(n) = costh(n) = heuristic_function(n, end)<br></br>
+              &emsp; &emsp; &emsp;       f(n) = g(n) + h(n)<br></br>
+              
+        
+              </div>
+            </div>
+            
+
+
             <button class="algorithmBtn" onClick={() => this.resetGrid()}>
               Reset
             </button>
