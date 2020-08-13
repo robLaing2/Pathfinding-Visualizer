@@ -31,6 +31,14 @@
     margin-left:50px;
     border-left:3px solid #fcfbfe;;
     padding-left: 30px;
+    height:80px;
+}
+
+.statsDiv {
+    display: inline-block;
+    height:80px;
+    margin-top: 30px;
+    text-align: left;
 }
 
 
@@ -55,8 +63,18 @@
     display: inline-block;
     font-family: 'Courier New', Courier, monospace;
     margin-left: 20px;
+    border-radius:5px;
+}
 
-
+.resetBtn {
+    text-align: center;
+    margin: auto;
+    color:#FFFFFF;
+    background-color:#000000;
+    border:1px solid #fcfbfe;
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 20px;
 }
 
 .algorithmDiv {
@@ -101,15 +119,24 @@
     margin: auto;
     color:#FFFFFF;
     background-color:#000000;
-    border:1px solid #fcfbfe;
+    font-size:18px;
     display: inline-block;
     font-family: 'Courier New', Courier, monospace;
     margin-left: 20px;
+    display: inline-block;
+    
+    width:200px;
+    
 }
 
 
 .algorithmBtn:hover{
     color:#000000;
     background-color:#FFFFFF;
+}
+
+#distanceFound {
+    border-left:3px solid #fcfbfe;
+    padding-left:20px;
 }
 

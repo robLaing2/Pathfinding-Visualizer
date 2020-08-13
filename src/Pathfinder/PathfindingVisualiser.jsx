@@ -58,7 +58,8 @@ export default class PathfindingVisualizer extends Component {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-          document.getElementById(`visitCounter`).innerHTML = i;
+        var visitString = "Visited Nodes: " + i;
+          document.getElementById(`visitCounter`).innerHTML = visitString;
       }, 10 * i);
     }
   }
@@ -96,8 +97,8 @@ export default class PathfindingVisualizer extends Component {
     }
     this.setState({grid: gridO});
 
-    document.getElementById(`visitCounter`).innerHTML = 0;
-    document.getElementById(`distanceFound`).innerHTML = 0;
+    document.getElementById(`visitCounter`).innerHTML = "Visited Nodes: 0";
+    document.getElementById(`distanceFound`).innerHTML = "Final Distance: 0";
     
   }
 
@@ -134,7 +135,8 @@ export default class PathfindingVisualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
-        document.getElementById(`distanceFound`).innerHTML = i;
+        var distanceString = "Final Distance: " + i;
+        document.getElementById(`distanceFound`).innerHTML = distanceString;
       }, 50 * i);
     }
   }
@@ -209,29 +211,68 @@ export default class PathfindingVisualizer extends Component {
         </div>
         <div class="selectionGrid">
           <div class="sel"> 
+            <div class="algorithmDiv">
             <button class="algorithmBtn" onClick={() => this.visualiseMazeCreation()}>
               Create <br></br>maze
             </button>
+            <div class="algorithmText">
+              (Initialisation)<br></br>
+              Add start to set<br></br>
+              while set is not empty<br></br>
+              &emsp;  cell = random cell in set<br></br>
+              &emsp;  neighbours = getNeighbours(cell) <br></br>
+              &emsp;  if neighbours is not empty <br></br>
+              &emsp; &emsp; randNeighbour = random cell in neighbours<br></br>
+              &emsp; &emsp; create connection with cell and randNeighbour<br></br>
+              &emsp;  add neighbours to set<br></br>
+            </div>
+            </div>
+            
           </div>
           <div class="selright">
+          <div class="algorithmDiv">
             <button class="algorithmBtn" onClick={() => this.visualizeDijkstra()}>
               Solve with Dijkstras
             </button>
-
             <div class="algorithmText">
-
+              (Initialisation)<br></br>
+              for each node in grid:<br></br>
+              &emsp;  dist[v] = infinity<br></br>
+              &emsp;  previous[v] = undefined<br></br>
+              dist[start] = 0<br></br>
+              queue = all node in grid<br></br>
+              <br></br>
+              while the queue is not empty <br></br>
+              &emsp; u = node in queue with smallest distance <br></br>
+              &emsp; remove u from queue <br></br>
+              &emsp; for each neighbor v of u:<br></br>
+              &emsp;   alt = dist[u] + dist_between(u, v)<br></br>
+              &emsp;   if alt less than dist[v] <br></br>
+              &emsp; &emsp;     dist[v] = alt<br></br>
+              &emsp; &emsp;     previous[v] = u<br></br>
+              return previous<br></br>
+              </div>
             </div>
+
             
             <div class="algorithmDiv">
               <button class="algorithmBtn" onClick={() => this.visualizeAStar()}>
                 Solve with <br></br>A Star
               </button>
               <div class="algorithmText">
+
+              (Initialisation)<br></br>
+              open_list = (start)<br></br>
+              closed_list = ()<br></br>
+              g(start) = 0<br></br>
+              h(start) = h(start, end)<br></br>
+              f(start) = g(start) + h(start)<br></br>
+              <br></br>
               while the open_list is not empty <br></br>
-              m = open_list the node node_current with the lowest f <br></br>
-              if m == end <br></br>
-              &emsp;    return<br></br>
-              &emsp;   remove m from open_listadd m to closed_lits<br></br>
+              &emsp;m = open_list the node node_current with the lowest f <br></br>
+              &emsp;if m == end <br></br>
+              &emsp;&emsp; return<br></br>
+              &emsp;   remove m from open_listadd m to closed_list<br></br>
               &emsp;   for each n in child(m)<br></br>
               &emsp; &emsp;     if n in closed_list<br></br>
               &emsp; &emsp; &emsp;       continue<br></br>
@@ -242,7 +283,7 @@ export default class PathfindingVisualizer extends Component {
               &emsp; &emsp;       remove n from closed_list<br></br>
               &emsp; &emsp;     if n not in open_list and n not in closed_list<br></br>
               &emsp; &emsp; &emsp;       add n to open_list<br></br>
-              &emsp; &emsp; &emsp;       g(n) = costh(n) = heuristic_function(n, end)<br></br>
+              &emsp; &emsp; &emsp;       g(n) = costh(n) = h(n, end)<br></br>
               &emsp; &emsp; &emsp;       f(n) = g(n) + h(n)<br></br>
               
         
@@ -251,18 +292,29 @@ export default class PathfindingVisualizer extends Component {
             
 
 
-            <button class="algorithmBtn" onClick={() => this.resetGrid()}>
-              Reset
-            </button>
+            
             
           </div>
-          <p class="visitCounter" id="visitCounter">
-              0
-          </p>
-          <p class="visitCounter" id="distanceFound">
-              0
-          </p>
+
+          <div class="selright">
+            <button class="algorithmBtn" onClick={() => this.resetGrid()}>
+              Reset<br></br>Grid     
+            </button>
+          
+          </div>
+          
+
+          
         </div>
+
+        <div class="statsDiv">
+              <p class="visitCounter" id="visitCounter">
+                Visited Nodes: 0
+              </p>
+              <p class="visitCounter" id="distanceFound">
+                Final Distance: 0
+              </p>
+            </div>
       </>
     );
   }
